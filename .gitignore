@@ -16,6 +16,14 @@ __pycache__/
 *$py.class
 .nvmrc
 CLAUDE.md
+AGENTS.md
+BACKLOG.md
+
+/docs/architecture.md
+/docs/file-storage.md
+/docs/key-commands.md 
+/docs/pdf-generation.md 
+
 # C extensions
 *.so
 

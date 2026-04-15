@@ -85,6 +85,7 @@ from open_webui.tools.builtin import (
     view_file,
     view_knowledge_file,
     view_skill,
+    generate_presentation,
 )
 
 import copy
@@ -502,6 +503,10 @@ def get_builtin_tools(
     # Skills tools - view_skill allows model to load full skill instructions on demand
     if extra_params.get('__skill_ids__'):
         builtin_functions.append(view_skill)
+
+    # Presentation generation tools
+    if is_builtin_tool_enabled('presentation') and getattr(request.app.state.config, 'ENABLE_PRESENTATION_GENERATION', False):
+        builtin_functions.append(generate_presentation)
 
     for func in builtin_functions:
         callable = get_async_tool_function_and_apply_extra_params(

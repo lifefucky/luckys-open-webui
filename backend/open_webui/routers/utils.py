@@ -12,6 +12,7 @@ from starlette.responses import FileResponse
 
 from open_webui.utils.misc import get_gravatar_url
 from open_webui.utils.pdf_generator import PDFGenerator
+from open_webui.utils.pptx_generator import PPTXGenerator
 from open_webui.utils.auth import get_admin_user, get_verified_user
 from open_webui.utils.code_interpreter import execute_code_jupyter
 
@@ -99,6 +100,21 @@ async def download_chat_as_pdf(form_data: ChatTitleMessagesForm, user=Depends(ge
         )
     except Exception as e:
         log.exception(f'Error generating PDF: {e}')
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.post('/pptx')
+async def download_chat_as_pptx(form_data: ChatTitleMessagesForm, user=Depends(get_verified_user)):
+    try:
+        pptx_bytes = PPTXGenerator(form_data).generate_chat_pptx()
+
+        return Response(
+            content=pptx_bytes,
+            media_type='application/vnd.openxmlformats-officedocument.presentationml.presentation',
+            headers={'Content-Disposition': 'attachment;filename=chat.pptx'},
+        )
+    except Exception as e:
+        log.exception(f'Error generating PPTX: {e}')
         raise HTTPException(status_code=400, detail=str(e))
 
 

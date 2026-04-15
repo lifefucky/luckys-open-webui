@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- 📊 **PowerPoint presentation export.** Added PPTXGenerator utility to convert chat messages into professional PowerPoint presentations with title slides, section slides, and content slides. Uses the `python-pptx` library and follows the PPTX_SKILL.md guidelines for formatting and structure. New endpoint `/api/v1/utils/pptx` available alongside the existing PDF export.
+
 ## [0.8.12] - 2026-03-26
 
 ### Added

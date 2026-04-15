@@ -1540,6 +1540,12 @@ ENABLE_NOTES = PersistentConfig(
     os.environ.get('ENABLE_NOTES', 'True').lower() == 'true',
 )
 
+ENABLE_PRESENTATION_GENERATION = PersistentConfig(
+    'ENABLE_PRESENTATION_GENERATION',
+    'presentation.enable',
+    os.environ.get('ENABLE_PRESENTATION_GENERATION', 'False').lower() == 'true',
+)
+
 ENABLE_USER_STATUS = PersistentConfig(
     'ENABLE_USER_STATUS',
     'users.enable_status',
